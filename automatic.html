@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automated Teller Machine</title>
+    <link rel="stylesheet" href="atm.css">
+    <script>
+        var	balance = 1000000;
+        var amount ;
+        function showBalance(){
+            message.value = "Your Balance is :";
+            display.value = balance;
+        }
+        function cashOut(){
+            message.value = "Enter the amount you withdraw below";
+            document.getElementById("enterAmount").play();
+        }
+       function process(){
+            amount = display.value;
+           if (balance >= amount) 
+           {
+               balance = balance-amount;
+               message.value = "Please take your money";
+               document.getElementById("takeCash").play();
+           }
+           else{
+               message.value = "Insufficient Funds"
+               document.getElementById("insufficientFunds").play();
+           }
+       }
+    </script>
+</head>
+<body>
+<center>
+	<table border="1" width="80%">
+        <tr>
+            <td colspan="3" align="center"> 
+        	<h1>AUTOMATED TELLER MACHINE </h1>
+            </td>
+        </tr>
+        <tr>
+            <td align="center"> 
+                <button >Transfer</button>
+            </td>
+            <td rowspan="3" width="50%">
+                <textarea name="" id="message" cols="75" rows="5" disabled></textarea>
+                <textarea name="" id="display" cols="75" rows="25"></textarea>
+                <button onclick="process()">Enter</button>
+            </td>
+            <td align="center" >
+                <button onclick="cashOut()">Withdraw</button>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <button>Recharge</button>
+            </td>
+        
+            <td align="center">
+                <button onclick="showBalance()">Balance</button>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <button>Change Pin</button>
+            </td>
+       
+            <td align="center">
+                <button>End</button>
+            </td>
+        </tr>
+	</table>
+</center>
+<audio id="enterAmount" src="enterAmount.ogg"></audio>
+<audio id="insufficientFunds" src="insufficientFunds.ogg"></audio>
+<audio id="takeCash" src="takeCash.ogg"></audio>
+</body>
+</html>
